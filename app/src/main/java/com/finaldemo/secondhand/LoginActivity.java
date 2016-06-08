@@ -16,7 +16,7 @@ import java.util.HashMap;
 /**
  * Created by wkw307 on 2016/6/7.
  */
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, AsyncResponse {
+public class LoginActivity extends AppCompatActivity implements AsyncResponse {
     EditText etUsername,etPassword;
     Button btnLogin;
 
@@ -28,21 +28,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etPassword = (EditText) findViewById(R.id.etPassword);
         etUsername = (EditText) findViewById(R.id.etName);
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(this);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HashMap postData = new HashMap();
+                postData.put("btnLogin","Login");
+                postData.put("mobile", "android");
+                postData.put("txtUsername",etUsername.getText().toString());
+                postData.put("txtPassword",etPassword.getText().toString());
+
+                PostResponseAsyncTask task = new PostResponseAsyncTask( LoginActivity.this, postData);
+                task.execute("http://13.67.105.113/test/login.php");
+            }
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        HashMap postData = new HashMap();
-        postData.put("btnLogin","Login");
-        postData.put("mobile", "android");
-        postData.put("txtUsername",etUsername.getText().toString());
-        postData.put("txtPassword",etPassword.getText().toString());
-
-        PostResponseAsyncTask task = new PostResponseAsyncTask( this, postData);
-        task.execute("http://13.67.105.113/test/login.php");
-
-    }
 
     @Override
     public void processFinish(String result) {

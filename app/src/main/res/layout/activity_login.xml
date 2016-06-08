@@ -67,7 +67,7 @@
                 android:layout_weight="1.03" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dip"
                 android:hint="password"
