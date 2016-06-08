@@ -32,8 +32,6 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse {
             @Override
             public void onClick(View v) {
                 HashMap postData = new HashMap();
-                postData.put("btnLogin","Login");
-                postData.put("mobile", "android");
                 postData.put("txtUsername",etUsername.getText().toString());
                 postData.put("txtPassword",etPassword.getText().toString());
 
@@ -46,8 +44,9 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse {
 
     @Override
     public void processFinish(String result) {
-        Toast.makeText(LoginActivity.this, "", Toast.LENGTH_SHORT).show();
-        if(result.equals("success")){
+        //Toast.makeText(LoginActivity.this, result , Toast.LENGTH_SHORT).show();
+        if(!result.equals("failed")){
+            //String[] strarray = result.split(" ");
             Intent intent = new Intent();
             intent.setClass(LoginActivity.this, WelcomeActivity.class);
             startActivity(intent);
