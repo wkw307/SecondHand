@@ -44,8 +44,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse {
 
     @Override
     public void processFinish(String result) {
-        //Toast.makeText(LoginActivity.this, result , Toast.LENGTH_SHORT).show();
-        if(!result.equals("failed")){
+        Toast.makeText(LoginActivity.this, result , Toast.LENGTH_SHORT).show();
+        if(!result.equals("failed") && !result.equals(" ")){
             //String[] strarray = result.split(" ");
             Intent intent = new Intent();
             intent.setClass(LoginActivity.this, WelcomeActivity.class);
